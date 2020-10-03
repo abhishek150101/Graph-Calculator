@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="shortcut icon" href="/image/pie.png">
+	<title>Demo</title>
+	<style>
+		body {
+/*			background-color: black;
+*/  		background-color: #3b3a39;
+			text-align:center;
+  			/*padding-top:40px;*/
+			}
+		#calculator {
+  			margin:auto;
+		}
+		.head{
+		color: white;
+		font-family: Google Sans;
+		font-size: 25px;
+		}
+
+		</style>
+<!-- 	<link rel="shortcut icon"  src = "">
+ --></head>
+<body>
+	<div class="head">
+		<h1>Graph Calculator</h1>
+	</div>
+	<div id="calculator" style="width: auto; height:845px;">
+		<script src="https://www.desmos.com/api/v0.8/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+		<script>
+		(function () {
+		  "use strict";
+
+		  var calculator;
+
+		  function between (a, b) {
+			var range = b - a + 1;
+			return a + Math.floor(Math.random() * range);
+		  }
+
+		  function getPoints () {
+			return [
+			  { x: 0, y: between(-4, 4) },
+			  { x: 1, y: between(-5, 5) }
+			];
+		  }
+
+		  function getGradient (points) {
+			return (points[1].y - points[0].y) / (points[1].x - points[0].x);
+		  }
+
+		  function pointString (point) {
+			return '(' + point.x + ', ' + point.y + ')';
+		  }
+
+		  function lineString (points) {
+			var line = "y = ";
+			var gradient = getGradient(points);
+			line += gradient + 'x+';
+			line += points[0].y;
+
+			return line;
+		  }
+
+		  function showLine (points) {
+			points.forEach(function (point, i) {
+			  calculator.setExpression({id: 'p' + i, latex: pointString(point)});
+			});
+
+			calculator.setExpression({id:'line', latex: lineString(points)});
+		  }
+
+		  function next () {
+			showLine(getPoints());
+		  }
+
+		  function init () {
+			var elt = document.getElementById('calculator');
+			calculator = Desmos.GraphingCalculator(elt);
+
+			document.getElementById("btnNext").addEventListener('click', next);
+		  }
+
+		  init();
+		})();
+		</script>
+	</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+body{
+/*	background-color: #eb4034;*/
+	font-family: Google sans;
+}
+hr{
+	display: block;
+	width: 100%;
+	margin-left: auto;
+	height: 3px;
+	border-width: 1px;
+	background-color: black;
+}
+
+.heading {
+	text-align: center;
+	width: 100%;
+	border: 1px solid #333;
+	box-shadow: 8px 12px;
+	padding: 8px 12px;
+	background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
+}
+
+header{
+	text-align: center;
+}
+nav{
+	margin-left:auto;
+}
